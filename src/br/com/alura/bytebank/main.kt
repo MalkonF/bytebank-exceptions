@@ -4,7 +4,11 @@ import br.com.alura.bytebank.modelo.Endereco
 
 fun main() {
     println("início main")
-    10/0
+    try {
+        10 / 0
+    } catch (e: ArithmeticException) {
+        println("Peguei exceção")
+    }
     funcao1()
     println("fim main")
 }
@@ -20,7 +24,14 @@ fun funcao2() {
     for (i in 1..5) {
         println(i)
         val endereco = Any()
-        endereco as Endereco //se na JVM não tiver alguma classe que trate essa exceção ela vai estourar no console
+        try {
+            endereco as Endereco //se na JVM não tiver alguma classe que trate essa exceção ela vai estourar no console
+        } catch (e: ClassCastException) {
+            println("Peguei exceção")
+        }
     }
     println("fim funcao2")
+    //Quando acontece uma exception, ela vai descendo a pilha de execução em cada método e vendo se nesses métodos
+    //tem algum trecho que trata a exceção, se um não tratar, ela vai descendo os níveis. Se ngm tratar ela
+    //estoura no main
 }
