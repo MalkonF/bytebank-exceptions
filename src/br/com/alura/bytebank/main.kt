@@ -27,6 +27,10 @@ fun funcao2() {
         try {
             endereco as Endereco //se na JVM não tiver alguma classe que trate essa exceção ela vai estourar no console
         } catch (e: ClassCastException) {
+           // println(e.message)
+            //println(e.stackTrace)
+            //println(e.cause)
+            e.printStackTrace() //reune as 3 info dos println acima
             println("Peguei exceção")
         }
     }
