@@ -4,6 +4,31 @@ import br.com.alura.bytebank.modelo.Endereco
 
 fun main() {
     println("início main")
+    val entrada: String = "1.0"
+    /*Para vc fazer um try com valores imutáveis vc pode usar o try com expressão.
+    No caso vc podia declarar uma var fora do try e dentro do try vc atribuia o valor à ela, mas dessa forma não seria imutável.
+    Aqui nesse caso ele tenta converter, se não der certo atribui null a var
+    */
+    val valorRecebido: Double? = try {
+        entrada.toDouble()
+    } catch (e: NumberFormatException) {
+        println("Problema na conversão")
+        e.printStackTrace()
+        null
+    }
+    //if como expressão. Isso é feito pq Kotlin não trabalha com valores nulos
+    val valorComTaxa: Double? = if (valorRecebido != null) {
+        valorRecebido + 0.1
+    } else {
+        null
+    }
+
+    if (valorComTaxa != null) {
+        println("Valor recebido: $valorComTaxa")
+    } else {
+        println("Valor inválido")
+    }
+
     try {
         10 / 0
     } catch (e: ArithmeticException) {
@@ -27,7 +52,7 @@ fun funcao2() {
         try {
             endereco as Endereco //se na JVM não tiver alguma classe que trate essa exceção ela vai estourar no console
         } catch (e: ClassCastException) {
-           // println(e.message)
+            // println(e.message)
             //println(e.stackTrace)
             //println(e.cause)
             e.printStackTrace() //reune as 3 info dos println acima
