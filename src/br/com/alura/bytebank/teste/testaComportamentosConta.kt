@@ -54,6 +54,8 @@ fun testaComportamentosConta() {
     try {
         contaFran.transfere(destino = contaAlex, valor = 25.0, senha = 2)
         println("Transferência sucedida")
+
+
     } catch (e: SaldoInsuficienteException) {
         println("Falha na transferência")
         println("Saldo insuficiente")
@@ -61,8 +63,13 @@ fun testaComportamentosConta() {
     } catch (e: FalhaAutenticacaoException) {
         println("Falha na transferência/ Falha autenticação")
         e.printStackTrace()
-    }
+    } catch (e: Exception) { //captura qualquer exception. Sempre deixe este por último
+        //para que só acione caso as outras exceptions nao se enquadre, do contrário
+        //nas msg de exceção sempre vai ta o Erro desconhecido já que todas as exceptions são Exception
+        println("Erro desconhecido")
+        e.printStackTrace()
 
-    println(contaAlex.saldo)
-    println(contaFran.saldo)
+        println(contaAlex.saldo)
+        println(contaFran.saldo)
+    }
 }
