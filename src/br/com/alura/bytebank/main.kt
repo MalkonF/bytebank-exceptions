@@ -1,43 +1,19 @@
 package br.com.alura.bytebank
 
-import br.com.alura.bytebank.exception.SaldoInsuficienteException
-import br.com.alura.bytebank.teste.testaComportamentosConta
+import br.com.alura.bytebank.modelo.Endereco
 
 fun main() {
-    println("início main")
-    //funcao1()
-    testaComportamentosConta()
-    println("fim main")
-    //teste()
+    var endereco: Endereco? = null // ? permite receber nulo
+    endereco!!.logradouro //Ele pega a var que pode ser nulo graças ao sinal de ? acima e
+    // transforma em um tipo que não pode ser nulo. Então a gente vai assumir que isso é um obj valido
+    //que não é nulo, é nossa responsabilidade porque se rodar e estiver nulo vai dar a Exceção KotlinNullPoin..
+    var enderecoNaoNulo: Endereco = endereco!!//atribuindo ref da var endereco e configurando p aceitar nulo
+    enderecoNaoNulo.logradouro
 }
 
-//Erro é um erro na JVM no qual nós programadores n conseguimos lidar: falta mem sistema, fatal error etc
-// Exemplo de erro: Stack Overflow
-fun teste() {
-    return teste()
-}
 
-fun funcao1() {
-    println("início funcao1")
-    try {
-        funcao2()
-    } catch (e: ClassCastException) {
-        e.printStackTrace()
-    }
-    println("fim funcao1")
-}
 
-fun funcao2() {
-    println("início funcao2")
-    for (i in 1..5) {
-        println(i)
-        throw SaldoInsuficienteException()
-    }
-    println("fim funcao2")
-    //Quando acontece uma exception, ela vai descendo a pilha de execução em cada método e vendo se nesses métodos
-    //tem algum trecho que trata a exceção, se um não tratar, ela vai descendo os níveis. Se ngm tratar ela
-    //estoura no main
-}
+
 
 
 
